@@ -16,5 +16,5 @@ module Countries
     end
   end
   US = CountryHolder.new(FFaker::Name, FFaker::AddressUS, FFaker::PhoneNumber, "US")
-  DE = CountryHolder.new(FFaker::NameDE, FFaker::AddressDE, FFaker::PhoneNumberDE, "GE")
+  DE = CountryHolder.new(FFaker::NameDE, FFaker::AddressDE, FFaker::PhoneNumberDE, "GM")
 end

@@ -39,14 +39,9 @@ class PersonalInfo
   attr_accessor :telephoneExemptInd
   attr_accessor :countryNumber
   attr_accessor :phoneNumber
-  attr_accessor :uSAddress
-  attr_accessor :mailingAddress
-  attr_accessor :foreignAddress
-  attr_accessor :remarks
-  attr_accessor :printForm
 
 
-  def initialize(lastName = nil, firstName = nil, passportName = nil, preferredName = nil, suffix = nil, birth_date = nil, gender = nil, birth_country_code = nil, citizenship_status = nil, citizenship_country_code = nil, email = nil, commuter = nil, visa_type = nil, telephoneExemptInd = nil, countryNumber = nil, phoneNumber = nil, uSAddress = nil, mailingAddress = nil, foreignAddress = nil, remarks = nil, printForm = nil)
+  def initialize(lastName = nil, firstName = nil, passportName = nil, preferredName = nil, suffix = nil, birth_date = nil, gender = nil, birth_country_code = nil, citizenship_status = nil, citizenship_country_code = nil, email = nil, commuter = nil, visa_type = nil, telephoneExemptInd = nil, countryNumber = nil, phoneNumber = nil)
     @lastName = lastName
     @firstName = firstName
     @passportName = passportName
@@ -63,17 +58,12 @@ class PersonalInfo
     @telephoneExemptInd = telephoneExemptInd
     @countryNumber = countryNumber
     @phoneNumber = phoneNumber
-    @uSAddress = uSAddress
-    @mailingAddress = mailingAddress
-    @foreignAddress = foreignAddress
-    @remarks = remarks
-    @printForm = printForm
 
   end
 
   def to_xml
     builder = Nokogiri::XML::Builder.new do |xml|
-      xml.PersonalInfo('printForm' => printForm) {
+      xml.PersonalInfo {
         xml.FullName {
           xml.LastName lastName if lastName
           xml.FirstName firstName if firstName
@@ -81,7 +71,7 @@ class PersonalInfo
           xml.PreferredName preferredName if preferredName
           xml.Suffix suffix if suffix
         } if lastName
-        xml.BirthDate birth_date.xmlschema if birth_date
+        xml.BirthDate birth_date.strftime("%Y-%m-%d") if birth_date
         xml.Gender gender
         xml.BirthCountryCode birth_country_code
         xml.CitizenshipStatus citizenship_status
@@ -96,13 +86,9 @@ class PersonalInfo
         } if phoneNumber
         xml.Commuter commuter if commuter
         xml.VisaType visa_type if visa_type
-        xml.USAddress uSAddress if uSAddress
-        xml.MailingAddress mailingAddress if mailingAddress
-        xml.ForeignAddress << foreignAddress.to_xml if foreignAddress
-        xml.Remarks remarks if remarks
       }
     end
-    builder.to_xml
+    builder.to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
   end
 
 

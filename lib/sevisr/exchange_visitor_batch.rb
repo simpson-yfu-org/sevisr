@@ -1,12 +1,5 @@
-require 'nokogiri'
+class ExchangeVisitorBatch
 
-# SEVIS Batch
-# user_id SEVIS User ID
-# org_id SEVIS Org ID
-# batch_id Batch ID
-# create_list List of sevisr:Student to create
-# update_list List of sevisr:Student to update
-class StudentBatch
   attr_accessor :user_id
   attr_accessor :org_id
   attr_accessor :batch_id
@@ -22,21 +15,22 @@ class StudentBatch
     @update_list = update_list
   end
 
+
   def to_xml
     builder = Nokogiri::XML::Builder.new do |xml|
-      xml.SEVISBatchCreateUpdateStudent('userID' => user_id) {
+      xml.SEVISBatchCreateUpdateEV('userID' => user_id, 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance') {
         xml.BatchHeader {
           xml.BatchID batch_id
           xml.OrgID org_id
         }
-        xml.CreateStudent {
-          create_list.each do |student|
-            xml.parent << student.to_xml
+        xml.CreateEV {
+          create_list.each do |visitor|
+            xml.parent << visitor.to_xml
           end
         } if !create_list.nil? && !create_list.empty?
-        xml.UpdateStudent {
-          update_list.each do |student|
-            xml.parent << student.to_xml
+        xml.UpdateEV {
+          update_list.each do |visitor|
+            xml.parent << visitor.to_xml
           end
         } if !update_list.nil? && !update_list.empty?
       }

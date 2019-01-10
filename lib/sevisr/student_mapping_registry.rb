@@ -1050,7 +1050,7 @@ module Sevis
     )
 
     Registry.register(
-        :class => Sevis::SEVISStudentBatchType::UpdateStudent::Student::Request::CapGapExtension,
+        :class => Sevis::SEVISStudentBatchType::UpdateStudent::Student::SevisHelper::CapGapExtension,
         :schema_name => XSD::QName.new(nil, "CapGapExtension"),
         :is_anonymous => true,
         :schema_qualified => false,
@@ -1063,7 +1063,7 @@ module Sevis
     )
 
     Registry.register(
-        :class => Sevis::SEVISStudentBatchType::UpdateStudent::Student::Request,
+        :class => Sevis::SEVISStudentBatchType::UpdateStudent::Student::SevisHelper,
         :schema_name => XSD::QName.new(nil, "Request"),
         :is_anonymous => true,
         :schema_qualified => false,
@@ -2557,7 +2557,7 @@ module Sevis
     )
 
     Registry.register(
-        :class => Sevis::SEVISBatchCreateUpdateStudent::UpdateStudent::Student::Request::CapGapExtension,
+        :class => Sevis::SEVISBatchCreateUpdateStudent::UpdateStudent::Student::SevisHelper::CapGapExtension,
         :schema_name => XSD::QName.new(nil, "CapGapExtension"),
         :is_anonymous => true,
         :schema_qualified => false,
@@ -2570,7 +2570,7 @@ module Sevis
     )
 
     Registry.register(
-        :class => Sevis::SEVISBatchCreateUpdateStudent::UpdateStudent::Student::Request,
+        :class => Sevis::SEVISBatchCreateUpdateStudent::UpdateStudent::Student::SevisHelper,
         :schema_name => XSD::QName.new(nil, "Request"),
         :is_anonymous => true,
         :schema_qualified => false,

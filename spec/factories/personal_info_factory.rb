@@ -1,10 +1,11 @@
 require 'ffaker'
 require "Countries.rb"
+require "sevisr/personal_info.rb"
 
 FactoryBot.define do
   factory :person, class: PersonalInfo do
     transient do
-      country {Countries::US}
+      country {Countries::DE}
     end
 
 
@@ -16,7 +17,7 @@ FactoryBot.define do
     firstName {country.namef.first_name}
     passportName {"#{firstName} #{lastName}"}
     preferredName {"Johnny"}
-    birth_date {DateTime.new(1998, 2, 3)}
+    birth_date {DateTime.now << 12 * 15}
     birth_country_code {country.country_code}
     gender {"M"}
     citizenship_status {"03"}
@@ -25,7 +26,7 @@ FactoryBot.define do
     commuter {"N"}
     visa_type {"01"}
     phoneNumber {country.country_code == "US" ? country.phonef.short_phone_number : country.phonef.phone_number}
-    countryNumber {country.country_code != "US" ? country.phonef.country_code.delete("+") : nill}
+    countryNumber {country.country_code != "US" ? country.phonef.country_code.delete("+") : nil}
     telephoneExemptInd {"N"}
 
   end

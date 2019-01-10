@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 # {http://www.ice.gov/xmlschema/sevisbatch/Common}ForeignAddrType
 #   address1 - SOAP::SOAPString
 #   address2 - SOAP::SOAPString
@@ -23,7 +25,8 @@ class ForeignAddress
   end
 
   def to_xml
-    builder = Nokogiri::XML::Builder.new do |xml|
+    frag = Nokogiri::XML::DocumentFragment.parse("")
+    builder = Nokogiri::XML::Builder.with(frag) do |xml|
       xml.Address1 address1
       xml.Address2 address2 if address2
       xml.City city if city
@@ -31,6 +34,6 @@ class ForeignAddress
       xml.CountryCode countryCode if countryCode
       xml.PostalCode postalCode if postalCode
     end
-    builder.to_xml
+    frag.to_xml
   end
 end

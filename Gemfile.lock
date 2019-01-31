@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     sevisr (0.1.0)
+      activesupport
       httpclient
       nokogiri
-      soap4r-ng (~> 2.0, >= 2.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -40,7 +40,6 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    soap4r-ng (2.0.4)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)

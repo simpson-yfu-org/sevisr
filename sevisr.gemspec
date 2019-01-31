@@ -44,6 +44,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "nokogiri"
   spec.add_runtime_dependency "httpclient"
-  spec.add_runtime_dependency "soap4r-ng", "~> 2.0", ">= 2.0.4"
-
+  spec.add_runtime_dependency "activesupport"
 end

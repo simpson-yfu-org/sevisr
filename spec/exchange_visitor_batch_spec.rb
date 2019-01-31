@@ -59,18 +59,30 @@ RSpec.describe ExchangeVisitorBatch do
     validate(batch)
   end
 
-  it "Validates on om create with host family" do
+  it "Validates on create with host family" do
     batch = build(:exchange_visitor_batch);
     batch.create_list = build_list(:exchange_visitor, 1, :create, :with_host_family)
-    puts batch.to_xml
 
     validate(batch)
   end
 
-  it "Validates on om create with boarding school" do
+  it "Validates on create with boarding school" do
     batch = build(:exchange_visitor_batch);
     batch.create_list = build_list(:exchange_visitor, 1, :create, :with_boarding_school)
-    puts batch.to_xml
+
+    validate(batch)
+  end
+
+  it "Validates on update with host family" do
+    batch = build(:exchange_visitor_batch);
+    batch.update_list = build_list(:exchange_visitor, 1, :update, :with_host_family)
+
+    validate(batch)
+  end
+
+  it "Validates on upodate with boarding school" do
+    batch = build(:exchange_visitor_batch);
+    batch.update_list = build_list(:exchange_visitor, 1, :update, :with_boarding_school)
 
     validate(batch)
   end

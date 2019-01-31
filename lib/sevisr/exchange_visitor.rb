@@ -129,6 +129,7 @@ class ExchangeVisitor
           xml.MailAddress {
             xml.parent << mailing_address.to_xml
           } if mailing_address && sevisID
+          xml.parent << residential_address.to_xml if residential_address && !sevisID.nil?
         }
         xml.PositionCode position_code if position_code && sevisID.nil?
         xml.PrgStartDate prg_start_date.strftime("%Y-%m-%d") if sevisID.nil?
@@ -169,7 +170,7 @@ class ExchangeVisitor
             xml.parent << soa.to_xml
           end
         } if sevisID.nil? && !add_soas.nil? && !add_soas.empty?
-        xml.parent << residential_address.to_xml if residential_address
+        xml.parent << residential_address.to_xml if residential_address && sevisID.nil?
       }
     end
     builder.to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)

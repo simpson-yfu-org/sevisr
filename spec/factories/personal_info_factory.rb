@@ -1,9 +1,9 @@
 require 'ffaker'
 require "Countries.rb"
-require "sevisr/personal_info.rb"
+require "sevisr"
 
 FactoryBot.define do
-  factory :person, class: PersonalInfo do
+  factory :person, class: Sevisr::PersonalInfo do
     transient do
       country {Countries::DE}
     end

@@ -1,11 +1,11 @@
 require 'ffaker'
 require "Countries.rb"
-require "sevisr/student.rb"
+require "sevisr"
 load "spec/support/sevis_helpers.rb"
 
 
 FactoryBot.define do
-  factory :student, class: Student do
+  factory :student, class: Sevisr::Student do
     transient do
       country {Countries::DE}
     end

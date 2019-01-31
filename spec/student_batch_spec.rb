@@ -1,11 +1,11 @@
-require "sevisr/student_batch.rb"
+require "sevisr"
 require 'date'
 require 'spec_helper'
 require 'ffaker'
 require 'Countries.rb'
 require 'nokogiri'
 
-RSpec.describe StudentBatch do
+RSpec.describe Sevisr::StudentBatch do
   before(:each) do
     Dir.chdir(File.expand_path("../xsd", File.dirname(File.expand_path(__FILE__)))) do
       @xsd = Nokogiri::XML::Schema(IO.read('Create-UpdateStudent.xsd'))

@@ -1,12 +1,12 @@
 require 'ffaker'
 require "Countries.rb"
-require "sevisr/exchange_visitor_batch.rb"
+require "sevisr"
 load "spec/support/sevis_helpers.rb"
 
 include SevisHelpers
 
 FactoryBot.define do
-  factory :exchange_visitor_batch, class: ExchangeVisitorBatch do
+  factory :exchange_visitor_batch, class: Sevisr::ExchangeVisitorBatch do
     transient do
       exchange_visitor_count {5}
     end

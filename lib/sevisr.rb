@@ -1,5 +1,15 @@
-require "sevisr/version"
-
 module Sevisr
-  # Your code goes here...
+  require "sevisr/version"
+  require "sevisr/exchange_visitor"
+  require "sevisr/exchange_visitor_batch"
+  require "sevisr/foreign_address"
+  require "sevisr/other_funds"
+  require "sevisr/personal_info"
+  require "sevisr/residential_address"
+  require "sevisr/soa"
+  require "sevisr/soa_exempt"
+  require "sevisr/student"
+  require "sevisr/student_batch"
+  require "sevisr/us_address"
+  require "sevisr/version"
 end

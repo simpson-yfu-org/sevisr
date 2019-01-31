@@ -1,14 +1,12 @@
 require 'ffaker'
 require "Countries.rb"
-require "sevisr/exchange_visitor.rb"
+require "sevisr"
 require "date"
 load "spec/support/sevis_helpers.rb"
-require 'sevisr/soa_exempt.rb'
-require 'sevisr/soa.rb'
 
 
 FactoryBot.define do
-  factory :exchange_visitor, class: ExchangeVisitor do
+  factory :exchange_visitor, class: Sevisr::ExchangeVisitor do
     transient do
       country {Countries::DE}
     end
@@ -43,11 +41,11 @@ FactoryBot.define do
     subject_field_remarks {"none"}
     received_us_govt_funds {false}
     other_funds_personal {Random.rand(4000..400000)}
-    add_soas {[SOA.new(build(:usAddress), 'Site name', 1)]}
+    add_soas {[Sevisr::SOA.new(build(:usAddress), 'Site name', 1)]}
 
 
     trait :exempt do
-      add_soas {[SOAExempt.new("Exempt SOA")]}
+      add_soas {[Sevisr::SOAExempt.new("Exempt SOA")]}
     end
     trait :create do
 

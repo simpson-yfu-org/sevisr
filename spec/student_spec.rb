@@ -1,11 +1,10 @@
-require "sevisr/student.rb"
-require "sevisr/personal_info.rb"
+require "sevisr"
 require 'ffaker'
 require 'Countries.rb'
 require 'spec_helper'
 
 
-RSpec.describe Student do
+RSpec.describe Sevisr::Student do
 
   it "Prints out" do
     student = build(:student, country: Countries::DE)

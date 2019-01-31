@@ -1,12 +1,12 @@
 require 'ffaker'
 require "Countries.rb"
-require "sevisr/residential_address"
+require "sevisr"
 require "date"
 load "spec/support/sevis_helpers.rb"
 
 
 FactoryBot.define do
-  factory :residential_address, class: ResidentialAddress do
+  factory :residential_address, class: Sevisr::ResidentialAddress do
 
     lc_lastname {FFaker::Name.last_name}
     lc_firstname {FFaker::Name.first_name}

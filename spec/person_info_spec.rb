@@ -1,10 +1,10 @@
-require "sevisr/personal_info.rb"
+require "sevisr"
 require 'date'
 require 'spec_helper'
 require 'ffaker'
 require 'Countries.rb'
 
-RSpec.describe PersonalInfo do
+RSpec.describe Sevisr::PersonalInfo do
 
   it "Prints out" do
 #      person = build( :person, namef: FFaker::Name)

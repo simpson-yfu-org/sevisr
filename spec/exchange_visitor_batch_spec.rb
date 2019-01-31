@@ -1,11 +1,12 @@
-require "sevisr/exchange_visitor_batch.rb"
+require "sevisr"
 require 'date'
 require 'spec_helper'
 require 'ffaker'
 require 'Countries.rb'
 require 'nokogiri'
 
-RSpec.describe ExchangeVisitorBatch do
+
+RSpec.describe Sevisr::ExchangeVisitorBatch do
 
   def validate(batch)
     xml = Nokogiri::XML(batch.to_xml)

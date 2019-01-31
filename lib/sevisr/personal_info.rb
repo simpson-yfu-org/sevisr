@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'date'
-
+module Sevisr
 #   lastName - SOAP::SOAPString
 #   firstName - SOAP::SOAPString
 #   passportName - SOAP::SOAPString
@@ -22,74 +22,75 @@ require 'date'
 #   foreignAddress ForeignAddress
 # remarks SOAP::SOAPString
 # printForm Y or N
-class PersonalInfo
-  attr_accessor :lastName
-  attr_accessor :firstName
-  attr_accessor :passportName
-  attr_accessor :preferredName
-  attr_accessor :suffix
-  attr_accessor :birth_date
-  attr_accessor :gender
-  attr_accessor :birth_country_code
-  attr_accessor :citizenship_status
-  attr_accessor :citizenship_country_code
-  attr_accessor :email
-  attr_accessor :commuter
-  attr_accessor :visa_type
-  attr_accessor :telephoneExemptInd
-  attr_accessor :countryNumber
-  attr_accessor :phoneNumber
+  class PersonalInfo
+    attr_accessor :lastName
+    attr_accessor :firstName
+    attr_accessor :passportName
+    attr_accessor :preferredName
+    attr_accessor :suffix
+    attr_accessor :birth_date
+    attr_accessor :gender
+    attr_accessor :birth_country_code
+    attr_accessor :citizenship_status
+    attr_accessor :citizenship_country_code
+    attr_accessor :email
+    attr_accessor :commuter
+    attr_accessor :visa_type
+    attr_accessor :telephoneExemptInd
+    attr_accessor :countryNumber
+    attr_accessor :phoneNumber
 
 
-  def initialize(lastName = nil, firstName = nil, passportName = nil, preferredName = nil, suffix = nil, birth_date = nil, gender = nil, birth_country_code = nil, citizenship_status = nil, citizenship_country_code = nil, email = nil, commuter = nil, visa_type = nil, telephoneExemptInd = nil, countryNumber = nil, phoneNumber = nil)
-    @lastName = lastName
-    @firstName = firstName
-    @passportName = passportName
-    @preferredName = preferredName
-    @suffix = suffix
-    @birth_date = birth_date
-    @gender = gender
-    @birth_country_code = birth_country_code
-    @citizenship_status = citizenship_status
-    @citizenship_country_code = citizenship_country_code
-    @email = email
-    @commuter = commuter
-    @visaType = visa_type
-    @telephoneExemptInd = telephoneExemptInd
-    @countryNumber = countryNumber
-    @phoneNumber = phoneNumber
+    def initialize(lastName = nil, firstName = nil, passportName = nil, preferredName = nil, suffix = nil, birth_date = nil, gender = nil, birth_country_code = nil, citizenship_status = nil, citizenship_country_code = nil, email = nil, commuter = nil, visa_type = nil, telephoneExemptInd = nil, countryNumber = nil, phoneNumber = nil)
+      @lastName = lastName
+      @firstName = firstName
+      @passportName = passportName
+      @preferredName = preferredName
+      @suffix = suffix
+      @birth_date = birth_date
+      @gender = gender
+      @birth_country_code = birth_country_code
+      @citizenship_status = citizenship_status
+      @citizenship_country_code = citizenship_country_code
+      @email = email
+      @commuter = commuter
+      @visaType = visa_type
+      @telephoneExemptInd = telephoneExemptInd
+      @countryNumber = countryNumber
+      @phoneNumber = phoneNumber
 
-  end
-
-  def to_xml
-    builder = Nokogiri::XML::Builder.new do |xml|
-      xml.PersonalInfo {
-        xml.FullName {
-          xml.LastName lastName if lastName
-          xml.FirstName firstName if firstName
-          xml.PassportName passportName if passportName
-          xml.PreferredName preferredName if preferredName
-          xml.Suffix suffix if suffix
-        } if lastName
-        xml.BirthDate birth_date.strftime("%Y-%m-%d") if birth_date
-        xml.Gender gender
-        xml.BirthCountryCode birth_country_code
-        xml.CitizenshipStatus citizenship_status
-        xml.CitizenshipCountryCode citizenship_country_code
-        xml.Email email
-        xml.Telephone {
-          xml.TelephoneExemptInd telephoneExemptInd
-          xml.Phone {
-            xml.CountryNumber countryNumber if countryNumber
-            xml.PhoneNumber phoneNumber
-          }
-        } if phoneNumber
-        xml.Commuter commuter if commuter
-        xml.VisaType visa_type if visa_type
-      }
     end
-    builder.to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
+
+    def to_xml
+      builder = Nokogiri::XML::Builder.new do |xml|
+        xml.PersonalInfo {
+          xml.FullName {
+            xml.LastName lastName if lastName
+            xml.FirstName firstName if firstName
+            xml.PassportName passportName if passportName
+            xml.PreferredName preferredName if preferredName
+            xml.Suffix suffix if suffix
+          } if lastName
+          xml.BirthDate birth_date.strftime("%Y-%m-%d") if birth_date
+          xml.Gender gender
+          xml.BirthCountryCode birth_country_code
+          xml.CitizenshipStatus citizenship_status
+          xml.CitizenshipCountryCode citizenship_country_code
+          xml.Email email
+          xml.Telephone {
+            xml.TelephoneExemptInd telephoneExemptInd
+            xml.Phone {
+              xml.CountryNumber countryNumber if countryNumber
+              xml.PhoneNumber phoneNumber
+            }
+          } if phoneNumber
+          xml.Commuter commuter if commuter
+          xml.VisaType visa_type if visa_type
+        }
+      end
+      builder.to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)
+    end
+
+
   end
-
-
 end

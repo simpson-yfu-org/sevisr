@@ -1,12 +1,12 @@
 require 'ffaker'
 require "Countries.rb"
-require "sevisr/student_batch.rb"
+require "sevisr"
 load "spec/support/sevis_helpers.rb"
 
 include SevisHelpers
 
 FactoryBot.define do
-  factory :student_batch, class: StudentBatch do
+  factory :student_batch, class: Sevisr::StudentBatch do
     transient do
       student_count {5}
     end

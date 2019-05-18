@@ -11,5 +11,5 @@ module Sevisr
   require "sevisr/student"
   require "sevisr/student_batch"
   require "sevisr/us_address"
-  require "sevisr/version"
+  require "sevisr/client"
 end

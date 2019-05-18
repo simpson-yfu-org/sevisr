@@ -1,15 +1,34 @@
+require "yaml"
+
 module SevisHelpers
+  def config
+    spec = Gem::Specification.find_by_name("sevisr")
+    gem_root = spec.gem_dir
+    @config = YAML.load_file(File.join gem_root, "config/test.yml")
+
+  end
   def user
-    @user_id = ENV["SEVIS_USER"] || "user567890"
+    @user_id ||= config["SEVIS_USER"]
   end
 
   def org
-    @orgID ||= ENV["SEVIS_ORG"] ||= "P-1-12345"
+    @orgID ||= config["SEVIS_ORG"]
   end
 
   def batch
-    @batchID ||= ENV["SEVIS_BATCG"] ||= "batch123456789"
+    @batchID ||= "batch" + ("%09d" % Random.rand(100000))
   end
 
+  def pks_path
+    @pks_path = config["SEVIS_PKS12_PATH"]
+  end
+
+  def pks12_password
+    @pks12_password ||= config["SEVIS_PKS12_PASSWORD"]
+  end
+
+  def pk_password
+    @pk_password ||= config["SEVIS_PKS_PASSWORD"]
+  end
 
 end

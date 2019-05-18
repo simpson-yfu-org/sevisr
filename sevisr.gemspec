@@ -43,6 +43,6 @@ Gem::Specification.new do |spec|
 
 
   spec.add_runtime_dependency "nokogiri"
-  spec.add_runtime_dependency "httpclient"
   spec.add_runtime_dependency "activesupport"
+  spec.add_runtime_dependency 'rubyzip', '>= 1.0.0' # will load new rubyzip version
 end

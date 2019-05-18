@@ -1,7 +1,8 @@
 # Sevisr
 
 This GEM is used to work with the US Department of U.S. Department of Homeland Security Immigration and Customs Enforcement Student and 
-Exchange Visitor Program batch inteface.
+Exchange Visitor Program batch inteface.  The company that employs me is a J1 High School Exchange program provider.  
+Most of the testing is J1.   
 
 ## Installation
 
@@ -28,6 +29,18 @@ TODO: Write usage instructions here
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+For testing create a config/test.yml file
+
+```yaml
+  SEVIS_USER: user
+  SEVIS_PKS12_PATH: path
+  SEVIS_PKS12_PASSWORD: PK12 password
+  SEVIS_ORG: Org
+  SEVIS_PK_PASSWORD: Primary key password.
+```
+
+Testing is done against the Sevis Beta website.
 
 ## Contributing
 

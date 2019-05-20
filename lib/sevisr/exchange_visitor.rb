@@ -42,8 +42,8 @@ module Sevisr
     attr_accessor :other_funds_personal
 
 
-    def initialize(lastName = nil, firstName = nil, passportName = nil, preferredName = nil, suffix = nil, birth_date = nil, gender = nil, birth_city = nil, birth_country_code = nil, permanent_residence_country_code = nil, citizenship_country_code = nil, email = nil, phoneNumber = nil, requestID = nil, userID = nil, printForm = nil, sevisID = nil, statusCode = nil, user_defined_a = nil, user_defined_b = nil, us_born_reason_type = nil, position_code = nil, prg_start_date = nil, prg_end_date = nil, category_code = nil, us_address = nil, mailing_address = nil, occupation_category_code = nil, subject_field_code = nil, subject_field_remarks = nil, received_us_govt_funds = nil, program_sponsor_funds = nil, other_funds_us_govt = nil, other_funds_international = nil, other_funds_ev_govt = nil, other_funds_binational_commission = nil, other_funds_other_name = nil, other_funds_other_amount = nil, other_funds_personal = nil, \
-    add_soas = nil, edit_soas = nil, delete_soas = nil, residential_address = nil)
+    def initialize(lastName: nil, firstName: nil, passportName: nil, preferredName: nil, suffix: nil, birth_date: nil, gender: nil, birth_city: nil, birth_country_code: nil, permanent_residence_country_code: nil, citizenship_country_code: nil, email: nil, phoneNumber: nil, requestID: nil, userID: nil, printForm: nil, sevisID: nil, statusCode: nil, user_defined_a: nil, user_defined_b: nil, us_born_reason_type: nil, position_code: nil, prg_start_date: nil, prg_end_date: nil, category_code: nil, us_address: nil, mailing_address: nil, occupation_category_code: nil, subject_field_code: nil, subject_field_remarks: nil, received_us_govt_funds: nil, program_sponsor_funds: nil, other_funds_us_govt: nil, other_funds_international: nil, other_funds_ev_govt: nil, other_funds_binational_commission: nil, other_funds_other_name: nil, other_funds_other_amount: nil, other_funds_personal: nil, \
+    ad_soas: nil, edit_soas: nil, delete_soas: nil, residential_address: nil)
 
       @lastName = lastName
       @firstName = firstName

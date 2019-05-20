@@ -4,7 +4,7 @@ module Sevisr
 
     attr_accessor :explanationCode, :siteName, :address, :explanation, :primarySite, :remarks
 
-    def initialize(address, siteName, primarySite, explanationCode = nil, explanation = nil, remarks = nil)
+    def initialize(address, siteName, primarySite, explanationCode: nil, explanation: nil, remarks: nil)
       @address = address
       @explanationCode = explanationCode
       @explanation = explanation

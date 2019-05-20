@@ -22,7 +22,7 @@ module Sevisr
     attr_accessor :remarks
 
 
-    def initialize(requestID = nil, userID = nil, printForm = nil, sevisID = nil, statusCode = nil, personal_info = nil, uSAddress = nil, mailingAddress = nil, foreignAddress = nil, remarks = nil)
+    def initialize(requestID: nil, userID: nil, printForm: nil, sevisID: nil, statusCode: nil, personal_info: nil, uSAddress: nil, mailingAddress: nil, foreignAddress: nil, remarks: nil)
       @requestID = requestID
       @userID = userID
       @printForm = printForm

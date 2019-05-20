@@ -15,7 +15,7 @@ module Sevisr
     attr_accessor :update_list
 
 
-    def initialize(user_id = nil, org_id = nil, batch_id = nil, create_list = nil, update_list = nil)
+    def initialize(user_id: nil, org_id: nil, batch_id: nil, create_list: nil, update_list: nil)
       @user_id = user_id
       @org_id = org_id
       @batch_id = batch_id

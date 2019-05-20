@@ -12,7 +12,6 @@ RSpec.describe Sevisr::Client do
 
     it 'It reads the cert when a password is used' do
       client = build(:client)
-      client.init
       expect(client.pks12).to be_instance_of(OpenSSL::PKCS12)
       expect(client.pks12.certificate).to_not be_nil
       expect(client.pks12.key).to_not be_nil
@@ -33,10 +32,11 @@ RSpec.describe Sevisr::Client do
 
   it "Gets a batch" do
     client = build(:client)
-    name = batch_id + ".zip"
-    file = File.new(name, "w+")
+
+    file = Tempfile.new(['batch', '.zip'])
     puts File.expand_path(file.path)
-    client.get(SevisHelpers.org, batch_id, file)
+    client.get(SevisHelpers.org, SevisHelpers.sevis_good_batch_id, file)
+    file.close
     expect(file.length()).to_not be_zero
   end
 end

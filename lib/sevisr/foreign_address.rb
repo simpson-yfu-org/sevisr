@@ -15,7 +15,7 @@ module Sevisr
     attr_accessor :countryCode
     attr_accessor :postalCode
 
-    def initialize(address1 = nil, address2 = nil, city = nil, province = nil, countryCode = nil, postalCode = nil)
+    def initialize(address1: nil, address2: nil, city: nil, province: nil, countryCode: nil, postalCode: nil)
       @address1 = address1
       @address2 = address2
       @city = city

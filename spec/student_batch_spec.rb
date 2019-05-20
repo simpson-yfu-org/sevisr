@@ -22,6 +22,7 @@ RSpec.describe Sevisr::StudentBatch do
     xml = Nokogiri::XML(batch.to_xml)
     puts @xsd.valid?(xml)
     if (!@xsd.valid?(xml))
+      puts xml
       @xsd.validate(xml).each do |e|
         puts e
       end

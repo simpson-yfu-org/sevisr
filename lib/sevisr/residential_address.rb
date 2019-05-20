@@ -4,7 +4,7 @@ module Sevisr
 
     attr_accessor :bs_name, :hf_phone, :bs_phoneExt, :contact_lastname, :hf_lastname, :lc_firstname, :residentialType, :hostFamilyInd, :hf_phoneExt, :bs_phone, :lc_lastname, :lc_postal_code, :bs_PCTitle, :hf_firstname, :contact_firstname
 
-    def initialize(lc_lastname = nil, lc_firstname = nil, lc_postal_code = nil, contact_lastname = nil, contact_firstname = nil, residentialType = nil, hostFamilyInd = nil, hf_lastname = nil, hf_firstname = nil, hf_phone = nil, hf_phoneExt = nil, bs_name = nil, bs_PCTitle = nil, bs_phone = nil, bs_phoneExt = nil)
+    def initialize(lc_lastname: nil, lc_firstname: nil, lc_postal_code: nil, contact_lastname: nil, contact_firstname: nil, residentialType: nil, hostFamilyInd: nil, hf_lastname: nil, hf_firstname: nil, hf_phone: nil, hf_phoneExt: nil, bs_name: nil, bs_PCTitle: nil, bs_phone: nil, bs_phoneExt: nil)
       @lc_lastname = lc_lastname
       @lc_firstname = lc_firstname
       @lc_postal_code = lc_postal_code

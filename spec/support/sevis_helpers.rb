@@ -31,4 +31,9 @@ module SevisHelpers
     @pk_password ||= config["SEVIS_PKS_PASSWORD"]
   end
 
+  def sevis_good_batch_id
+    @sevis_good_batch_id ||= config["SEVIS_GOOD_BATCH_ID"]
+  end
+
+
 end

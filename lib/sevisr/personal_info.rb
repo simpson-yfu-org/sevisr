@@ -41,7 +41,7 @@ module Sevisr
     attr_accessor :phoneNumber
 
 
-    def initialize(lastName = nil, firstName = nil, passportName = nil, preferredName = nil, suffix = nil, birth_date = nil, gender = nil, birth_country_code = nil, citizenship_status = nil, citizenship_country_code = nil, email = nil, commuter = nil, visa_type = nil, telephoneExemptInd = nil, countryNumber = nil, phoneNumber = nil)
+    def initialize(lastName: nil, firstName: nil, passportName: nil, preferredName: nil, suffix: nil, birth_date: nil, gender: nil, birth_country_code: nil, citizenship_status: nil, citizenship_country_code: nil, email: nil, commuter: nil, visa_type: nil, telephoneExemptInd: nil, countryNumber: nil, phoneNumber: nil)
       @lastName = lastName
       @firstName = firstName
       @passportName = passportName

@@ -10,7 +10,7 @@ module Sevisr
     attr_accessor :amount2
 
 
-    def initialize(org1 = nil, other_name1 = nil, amount1 = nil, org2 = nil, other_name2 = nil, amount2 = nil)
+    def initialize(org1: nil, other_name1: nil, amount1: nil, org2: nil, other_name2: nil, amount2: nil)
       @org1 = org1
       @other_name1 = other_name1
       @amount1 = amount1

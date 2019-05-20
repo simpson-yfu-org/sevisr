@@ -17,7 +17,7 @@ module Sevisr
     attr_accessor :addressDoctorExplanationCode
     attr_accessor :addressDoctorExplanation
 
-    def initialize(address1 = nil, address2 = nil, city = nil, state = nil, postalCode = nil, postalRoutingCode = nil, addressDoctorExplanationCode = nil, addressDoctorExplanation = nil)
+    def initialize(address1: nil, address2: nil, city: nil, state: nil, postalCode: nil, postalRoutingCode: nil, addressDoctorExplanationCode: nil, addressDoctorExplanation: nil)
       @address1 = address1
       @address2 = address2
       @city = city

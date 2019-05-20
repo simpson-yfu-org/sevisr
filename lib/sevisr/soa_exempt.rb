@@ -4,7 +4,7 @@ module Sevisr
     attr_accessor :remarks
 
 
-    def initialize(remarks = nil)
+    def initialize(remarks: nil)
       @remarks = remarks
     end
 

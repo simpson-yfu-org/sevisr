@@ -12,11 +12,11 @@ module SevisHelpers
   end
 
   def org
-    @orgID ||= config["SEVIS_ORG"]
+    @org_id ||= config["SEVIS_ORG"]
   end
 
   def batch
-    @batchID ||= "batch" + ("%09d" % Random.rand(100000))
+    ("%014d" % Random.rand(100000))
   end
 
   def pks_path

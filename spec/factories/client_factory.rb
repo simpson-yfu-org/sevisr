@@ -11,7 +11,7 @@ FactoryBot.define do
     pks_path {SevisHelpers.pks_path}
     url {Sevisr::Client::SEVIS_DEV}
 
-    initialize_with {new(url, user, pks_path, pks_password)}
+    initialize_with {new(url: url, user: user, pks12_path: pks_path, pks12_password: pks_password)}
 
   end
 end

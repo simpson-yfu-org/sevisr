@@ -26,7 +26,7 @@ module Sevisr
 
     def to_xml
       frag = Nokogiri::XML::DocumentFragment.parse("")
-      builder = Nokogiri::XML::Builder.with(frag) do |xml|
+      Nokogiri::XML::Builder.with(frag) do |xml|
         xml.Address1 address1
         xml.Address2 address2 if address2
         xml.City city if city

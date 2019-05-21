@@ -12,9 +12,7 @@ RSpec.describe Sevisr::ExchangeVisitorBatch do
   def validate(batch)
     xml = Nokogiri::XML(batch.to_xml)
     if !@xsd.valid?(xml)
-      @xsd.validate(xml).each do |e|
-        puts e
-      end
+      @xsd.validate(xml).each(&method(:puts))
       puts batch.to_xml
 
     end

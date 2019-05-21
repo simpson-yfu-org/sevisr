@@ -25,9 +25,9 @@ RSpec.describe Sevisr::Client do
     batch = build(:exchange_visitor_batch, :create)
     batch.batch_id = batch_id
     io = StringIO.new
-    client.upload(batch, io)
+    client.batch_upload(batch: batch, io: io)
     puts io.string
-    expect(io.length()).to_not be_zero
+    expect(io.length).to_not be_zero
   end
 
   it "Gets a batch" do
@@ -35,8 +35,9 @@ RSpec.describe Sevisr::Client do
 
     file = Tempfile.new(['batch', '.zip'])
     puts File.expand_path(file.path)
-    client.get(SevisHelpers.org, SevisHelpers.sevis_good_batch_id, file)
+    client.batch_download(org_id: SevisHelpers.org, batch_id: SevisHelpers.sevis_good_batch_id, file: file)
     file.close
-    expect(file.length()).to_not be_zero
+    expect(file.length).to_not be_zero
+
   end
 end

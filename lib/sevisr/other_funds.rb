@@ -20,7 +20,7 @@ module Sevisr
 
     def to_xml
       frag = Nokogiri::XML::DocumentFragment.parse("")
-      builder = Nokogiri::XML::Builder.with(frag) do |xml|
+      Nokogiri::XML::Builder.with(frag) do |xml|
         xml.Org1 org1
         xml.OtherName1 other_name1 if other_name1
         xml.Amount1 amount1

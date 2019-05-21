@@ -1,7 +1,7 @@
 # Sevisr
 
 This GEM is used to work with the US Department of U.S. Department of Homeland Security Immigration and Customs Enforcement Student and 
-Exchange Visitor Program batch inteface.  The company that employs me is a J1 High School Exchange program provider.  
+Exchange Visitor Program batch interface.  The company that employs me is a J1 High School Exchange program provider.  
 Most of the testing is J1.   
 
 ## Installation
@@ -22,7 +22,40 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem only encapsulates the generation of the xml and posting and downloading batches.  
+It is up to you to know enough about SEVIS to know what to send them.
+
+###### Batch Upload
+```ruby
+create_list = [Sevisr::ExchangeVisitor.new ...]
+batch = Sevisr::ExchangeVisitorBatch.new user_id: 'user', org_id: 'org', batch_id: 'batchid', create_list: create_list
+client = Sevisr::Client.new url: Sevisr::Client.SEVIS_DEV, user: "user", pks12_path: "./cert.pks", pks12_password: "password"
+result_file = File.new "result.xml" "w+"
+hash = Sevisr::batch_upload()
+```
+Output
+```ruby
+{"TransactionLog"=>{"BatchHeader"=>{"BatchID"=>nil, "OrgID"=>"P-1-17332--AaB03x\rContent-Disposition: form-data; name=\"batchid\"\r\rbatch000088791--AaB03x\rContent-Disposition: form-data; name=\"userid\"\r\rjsimps1234"}, "BatchDetail"=>{"status"=>"false", "system"=>"PROD-SBT", "Upload"=>{"resultCode"=>"S0001", "dateTimeStamp"=>"2019-05-21T11:55:36.234-04:00"}}}}
+```
+
+###### Batch Download
+This writes to a file only, since the call returns a zip file.
+
+```ruby
+client = Sevisr::Client.new url: Sevisr::Client.SEVIS_DEV, user: "user", pks12_path: "./cert.pks", pks12_password: "password"
+file = File.new "batchresult.zip" "w+"
+hash = Sevisr::batch_download(org_id: "org", batch_id: "batch", client: client, file: file)
+file.close
+puts hash
+puts hash.dig("TransactionLog", "BatchDetail", "Download", "resultCode")
+
+```
+Output
+```ruby
+SEVISBatchCreateUpdateEV"=>{"xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", "userID"=>"jsimps1234", "BatchHeader"=>{"BatchID"=>"00000000015371", "OrgID"=>"P-1-12345"}, "UpdateEV"=>{"ExchangeVisitor"=>{"requestID"=>"req24", "userID"=>"jsimps1234", "sevisID"=>"N0000000010", "UserDefinedA"=>nil, "UserDefinedB"=>nil, "Biographical"=>{"printForm"=>"true", "FullName"=>{"LastName"=>"Elsner", "FirstName"=>"Caroyln", "PassportName"=>"Caroyln Elsner",  ...
+
+```
+end
 
 ## Development
 

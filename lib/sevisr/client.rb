@@ -14,9 +14,8 @@ module Sevisr
 
     BOUNDARY = "AaB03x"
 
-    header = {"Content-Type": "multipart/form-data; boundary=#{BOUNDARY}"}
 
-    def initialize (url, user, pks12_path, pks12_password, httparty_options = {})
+    def initialize (url:, user:, pks12_path:, pks12_password:)
       @user = user
       @pks12_path = pks12_path
       @pks12_password = pks12_password
@@ -33,7 +32,7 @@ module Sevisr
 
     end
 
-    def upload(batch, io)
+    def batch_upload(batch:, io:)
 
       uri = URI.join(@url, "batchUpload")
 
@@ -44,15 +43,15 @@ module Sevisr
       post_body << "Content-Type: application/xml\r\n\r\n"
       post_body << batch.to_xml
 
-      post_body << "--#{BOUNDARY}\r\n"
+      post_body << "\r\n\r\n--#{BOUNDARY}--\r\n"
       post_body << "Content-Disposition: form-data; name=\"orgid\"\r\n\r\n"
       post_body << batch.org_id
 
-      post_body << "--#{BOUNDARY}\r\n"
+      post_body << "\r\n\r\n--#{BOUNDARY}--\r\n"
       post_body << "Content-Disposition: form-data; name=\"batchid\"\r\n\r\n"
       post_body << batch.batch_id
 
-      post_body << "--#{BOUNDARY}\r\n"
+      post_body << "\r\n\r\n--#{BOUNDARY}--\r\n"
       post_body << "Content-Disposition: form-data; name=\"userid\"\r\n\r\n"
       post_body << @user
       post_body << "\r\n\r\n--#{BOUNDARY}--\r\n"
@@ -75,10 +74,11 @@ module Sevisr
       end
     end
 
-    def get(org_id, batch_id, io)
+    def batch_download(org_id:, batch_id:, file:)
       uri = URI.join(@url, "batchDownload")
+      params = {'orgid' => org_id, 'batchid' => batch_id, 'userid' => @user}
+      uri.query = URI.encode_www_form(params)
       req = Net::HTTP::Get.new uri
-      req.set_form_data('orgid' => org_id, 'batchid' => batch_id, 'userid' => @user)
       res = @http.start do |http|
         http.request(req)
       end
@@ -86,7 +86,7 @@ module Sevisr
       case res
       when Net::HTTPSuccess
         # OK
-        io.write res.body
+        file.write res.body
       else
         res.value
       end

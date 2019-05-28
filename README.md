@@ -1,6 +1,6 @@
 # Sevisr
 
-This GEM is used to work with the US Department of U.S. Department of Homeland Security Immigration and Customs Enforcement Student and 
+This GEM is used to work with the U.S. Department of Homeland Security Immigration and Customs Enforcement Student and 
 Exchange Visitor Program batch interface.  The company that employs me is a J1 High School Exchange program provider.  
 Most of the testing is J1.   
 

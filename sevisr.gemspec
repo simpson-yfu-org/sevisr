@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["simpson@yfu.org"]
 
   spec.summary = "Work with ICE Sevis Batch Interface "
-  spec.description = "Work with US Department of U.S. Department of Homeland Security Immigration and Customs Enforcement Student and Exchange Visitor Program batch inteface."
+  spec.description = "Work with US Department of Homeland Security Immigration and Customs Enforcement Student and Exchange Visitor Program batch inteface."
   spec.homepage = "https://github.com/jeffreyindc/sevisr"
   spec.license = "LGPL-3.0-or-later"
 

@@ -39,6 +39,14 @@ RSpec.describe Sevisr::ExchangeVisitorBatch do
     validate(batch)
   end
 
+  it "Prints out" do
+    batch = build(:exchange_visitor_batch)
+    batch.update_list = build_list(:exchange_visitor, 1, :update)
+    puts batch.to_xml
+
+
+  end
+
 
   it "Validates on update of 5" do
     batch = build(:exchange_visitor_batch)

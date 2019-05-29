@@ -19,7 +19,7 @@ module Sevisr
 
     def to_xml
       builder = Nokogiri::XML::Builder.new do |xml|
-        xml.SEVISBatchCreateUpdateEV('userID' => user_id, 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance') {
+        xml.SEVISBatchCreateUpdateEV('userID' => user_id, 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'xsi:noNamespaceSchemaLocation' => 'https://egov.ice.gov/sevis/XMLSchema/Create-UpdateExchangeVisitor.xsd') {
           xml.BatchHeader {
             xml.BatchID batch_id
             xml.OrgID org_id

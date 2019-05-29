@@ -23,7 +23,7 @@ FactoryBot.define do
     citizenship_status {"03"}
     citizenship_country_code {country.country_code}
     email {FFaker::Internet.email}
-    commuter {"N"}
+    commuter {false}
     visa_type {"01"}
     phoneNumber {country.country_code == "US" ? country.phonef.short_phone_number : country.phonef.phone_number}
     countryNumber {country.country_code != "US" ? country.phonef.country_code.delete("+") : nil}

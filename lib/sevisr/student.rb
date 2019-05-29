@@ -20,9 +20,10 @@ module Sevisr
     attr_accessor :mailingAddress
     attr_accessor :foreignAddress
     attr_accessor :remarks
+    attr_accessor :issueReason
 
 
-    def initialize(requestID: nil, userID: nil, printForm: nil, sevisID: nil, statusCode: nil, personal_info: nil, uSAddress: nil, mailingAddress: nil, foreignAddress: nil, remarks: nil)
+    def initialize(requestID: nil, userID: nil, printForm: nil, sevisID: nil, statusCode: nil, personal_info: nil, uSAddress: nil, mailingAddress: nil, foreignAddress: nil, remarks: nil, issueReason: nil)
       @requestID = requestID
       @userID = userID
       @printForm = printForm
@@ -33,6 +34,7 @@ module Sevisr
       @mailingAddress = mailingAddress
       @foreignAddress = foreignAddress
       @remarks = remarks
+      @issueReason = issueReason
 
     end
 
@@ -47,6 +49,7 @@ module Sevisr
           xml.UserDefinedA userDefinedA if userDefinedA
           xml.UserDefinedB userDefinedB if userDefinedB
           xml << personal_info.to_xml if personal_info
+          xml.IssueReason issueReason
           xml.USAddress {
             xml.parent << uSAddress.to_xml
           } if uSAddress

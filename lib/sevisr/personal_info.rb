@@ -58,7 +58,6 @@ module Sevisr
       @telephoneExemptInd = telephoneExemptInd
       @countryNumber = countryNumber
       @phoneNumber = phoneNumber
-
     end
 
     def to_xml
@@ -77,15 +76,21 @@ module Sevisr
           xml.CitizenshipStatus citizenship_status
           xml.CitizenshipCountryCode citizenship_country_code
           xml.Email email
+          xml.Commuter commuter if commuter
+          xml.VisaType visa_type
           xml.Telephone {
             xml.TelephoneExemptInd telephoneExemptInd
             xml.Phone {
+            if countryNumber.nil? || countryNumber == "01" || countryNumber == "1"
+              xml.USNumber phoneNumber
+            else
+            xml.Foreign {
               xml.CountryNumber countryNumber if countryNumber
               xml.PhoneNumber phoneNumber
             }
+            end
+            }
           } if phoneNumber
-          xml.Commuter commuter if commuter
-          xml.VisaType visa_type if visa_type
         }
       end
       builder.to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::NO_DECLARATION)

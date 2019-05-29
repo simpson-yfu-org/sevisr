@@ -24,6 +24,7 @@ FactoryBot.define do
     association :foreignAddress, factory: :foreignAddress, strategy: :build
     association :uSAddress, factory: :usAddress, strategy: :build
     association :mailingAddress, factory: :usAddress, strategy: :build
+    issueReason {"I"}
 
   end
 end

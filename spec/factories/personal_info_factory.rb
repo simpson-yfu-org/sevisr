@@ -9,6 +9,14 @@ FactoryBot.define do
     end
 
 
+    trait :create do
+      visa_type {"01"}
+    end
+
+
+    trait :print do
+      print_form {"true"}
+    end
     trait :us do
       remarks {"US"}
     end
@@ -24,7 +32,6 @@ FactoryBot.define do
     citizenship_country_code {country.country_code}
     email {FFaker::Internet.email}
     commuter {false}
-    visa_type {"01"}
     phoneNumber {country.country_code == "US" ? country.phonef.short_phone_number : country.phonef.phone_number}
     countryNumber {country.country_code != "US" ? country.phonef.country_code.delete("+") : nil}
     telephoneExemptInd {"N"}

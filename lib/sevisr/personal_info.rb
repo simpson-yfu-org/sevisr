@@ -39,9 +39,10 @@ module Sevisr
     attr_accessor :telephoneExemptInd
     attr_accessor :countryNumber
     attr_accessor :phoneNumber
+    attr_accessor :print_form
 
 
-    def initialize(lastName: nil, firstName: nil, passportName: nil, preferredName: nil, suffix: nil, birth_date: nil, gender: nil, birth_country_code: nil, citizenship_status: nil, citizenship_country_code: nil, email: nil, commuter: nil, visa_type: nil, telephoneExemptInd: nil, countryNumber: nil, phoneNumber: nil)
+    def initialize(lastName: nil, firstName: nil, passportName: nil, preferredName: nil, suffix: nil, birth_date: nil, gender: nil, birth_country_code: nil, citizenship_status: nil, citizenship_country_code: nil, email: nil, commuter: nil, visa_type: nil, telephoneExemptInd: nil, countryNumber: nil, phoneNumber: nil, print_form: nil)
       @lastName = lastName
       @firstName = firstName
       @passportName = passportName
@@ -58,11 +59,15 @@ module Sevisr
       @telephoneExemptInd = telephoneExemptInd
       @countryNumber = countryNumber
       @phoneNumber = phoneNumber
+      @print_form = print_form
     end
 
     def to_xml
+      attr = {}
+      attr['printForm'] = print_form if print_form
+
       builder = Nokogiri::XML::Builder.new do |xml|
-        xml.PersonalInfo {
+        xml.send("PersonalInfo", attr) {
           xml.FullName {
             xml.LastName lastName if lastName
             xml.FirstName firstName if firstName
@@ -77,7 +82,7 @@ module Sevisr
           xml.CitizenshipCountryCode citizenship_country_code
           xml.Email email
           xml.Commuter commuter if commuter
-          xml.VisaType visa_type
+          xml.VisaType visa_type if visa_type
           xml.Telephone {
             xml.TelephoneExemptInd telephoneExemptInd
             xml.Phone {

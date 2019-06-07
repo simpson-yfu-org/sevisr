@@ -21,9 +21,11 @@ module Sevisr
     attr_accessor :foreignAddress
     attr_accessor :remarks
     attr_accessor :issueReason
+    attr_accessor :educationalInfo
+    attr_accessor :financial_info
 
 
-    def initialize(requestID: nil, userID: nil, printForm: nil, sevisID: nil, statusCode: nil, personal_info: nil, uSAddress: nil, mailingAddress: nil, foreignAddress: nil, remarks: nil, issueReason: nil)
+    def initialize(requestID: nil, userID: nil, printForm: nil, sevisID: nil, statusCode: nil, personal_info: nil, uSAddress: nil, mailingAddress: nil, foreignAddress: nil, educationalInfo: nil, remarks: nil, issueReason: nil, financial_info: nil)
       @requestID = requestID
       @userID = userID
       @printForm = printForm
@@ -35,12 +37,14 @@ module Sevisr
       @foreignAddress = foreignAddress
       @remarks = remarks
       @issueReason = issueReason
+      @educationalInfo = educationalInfo
+      @financial_info = financial_info
 
     end
 
     def to_xml
       attr = {'requestID' => requestID, 'userID' => userID}
-      attr['printForm'] = printForm if printForm
+      attr['printForm'] = printForm if printForm && sevisID.nil?
       attr['sevisID'] = sevisID if sevisID
       attr['statusCode'] = statusCode if statusCode
 
@@ -49,16 +53,18 @@ module Sevisr
           xml.UserDefinedA userDefinedA if userDefinedA
           xml.UserDefinedB userDefinedB if userDefinedB
           xml << personal_info.to_xml if personal_info
-          xml.IssueReason issueReason
+          xml.IssueReason issueReason if issueReason && sevisID.nil?
           xml.USAddress {
             xml.parent << uSAddress.to_xml
-          } if uSAddress
+          } if uSAddress && sevisID.nil?
           xml.MailingAddress {
             xml.parent << mailingAddress.to_xml
-          } if mailingAddress
+          } if mailingAddress && sevisID.nil?
           xml.ForeignAddress {
             xml.parent << foreignAddress.to_xml
-          } if foreignAddress
+          } if foreignAddress && sevisID.nil?
+          xml.parent << educationalInfo.to_xml if educationalInfo && sevisID.nil?
+          xml.parent << financial_info.to_xml if financial_info && sevisID.nil?
           xml.Remarks remarks if remarks
         }
       end

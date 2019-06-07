@@ -12,23 +12,29 @@ RSpec.describe Sevisr::StudentBatch do
     end
   end
 
-  it "Prints out" do
-    batch = build(:student_batch, :create, :update)
-    puts batch.to_xml
-  end
-
-  it "Validates" do
-    batch = build(:student_batch, :create, :update)
+  def validate(batch)
     xml = Nokogiri::XML(batch.to_xml)
-    puts @xsd.valid?(xml)
     if !@xsd.valid?(xml)
-      puts xml
       @xsd.validate(xml).each(&method(:puts))
-
+      puts batch.to_xml
 
     end
 
-#    expect(@xsd.valid?(xml)).to eq true
+    expect(@xsd.valid?(xml)).to be true
+
+  end
+
+
+  it "Validates on update of 1" do
+    batch = build(:student_batch)
+    batch.update_list = build_list(:student, 1, :update)
+    validate(batch)
+  end
+
+  it "Validates on create of 1" do
+    batch = build(:student_batch)
+    batch.create_list = build_list(:student, 1, :create)
+    validate(batch)
   end
 
 end

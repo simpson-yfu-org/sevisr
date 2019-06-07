@@ -16,6 +16,8 @@ module Sevisr
   require "sevisr/student_batch"
   require "sevisr/us_address"
   require "sevisr/client"
+  require "sevisr/educational_info"
+  require "sevisr/financial_info"
 
   def self.batch_upload(batch:, client:, io:)
     client.batch_upload(batch: batch, io: io)
